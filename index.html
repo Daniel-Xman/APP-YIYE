@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YIYE — Every good moment deserves a page.</title>
+<meta name="description" content="YIYE turns your everyday photos into warm memory pages — a day out with friends, a baby's first year, grandma's smile. 100% on-device, 8 languages, your photos never leave your iPhone.">
+<meta name="apple-itunes-app" content="app-id=6838268889">
+<style>
+:root{
+  --fg:#3a3550;
+  --muted:#8a86a0;
+  --pink:#e8749c;      /* 暖粉 */
+  --blue:#5b9bd5;      /* 温柔蓝 */
+  --cream:#fff9f4;     /* 奶油白卡片底 */
+  --serif:"New York","Georgia",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
+  color:var(--fg);line-height:1.75;
+  -webkit-font-smoothing:antialiased;letter-spacing:-0.01em;
+  overflow-x:hidden;
+  /* 温暖底色：粉 → 蓝的柔云渐变 */
+  background:linear-gradient(180deg,
+    #fdf0f4 0%,      /* 淡粉 */
+    #fdeef0 30%,
+    #eef3fb 70%,     /* 淡蓝 */
+    #eaf2fa 100%);
+  background-attachment:fixed;
+}
+/* ═══ 漂浮的暖色光球 ═══ */
+.orb{position:fixed;border-radius:50%;filter:blur(110px);z-index:-1;pointer-events:none}
+.orb-1{width:520px;height:520px;left:-140px;top:-120px;
+  background:rgba(232,116,156,.18);animation:drift 26s ease-in-out infinite alternate}
+.orb-2{width:420px;height:420px;right:-120px;top:35vh;
+  background:rgba(91,155,213,.16);animation:drift 32s ease-in-out infinite alternate-reverse}
+.orb-3{width:460px;height:460px;left:25vw;bottom:-180px;
+  background:rgba(255,183,140,.16);animation:drift 38s ease-in-out infinite alternate}
+@keyframes drift{
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(70px,-50px) scale(1.15)}
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+/* ═══ 暖玻璃卡（奶油白雾） ═══ */
+.glass{
+  background:rgba(255,255,255,.62);
+  backdrop-filter:blur(44px) saturate(160%);
+  -webkit-backdrop-filter:blur(44px) saturate(160%);
+  border:1px solid rgba(255,255,255,.75);
+  border-radius:36px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 16px 50px rgba(120,90,130,.10);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s;
+}
+.glass:hover{
+  transform:translateY(-4px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 24px 70px rgba(120,90,130,.16);
+}
+section.glass{padding:48px 40px;margin:32px auto}
+/* ═══ 滚动淡入 ═══ */
+.reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+header{padding:80px 32px 52px;text-align:center;margin:32px auto}
+header img.icon{
+  width:128px;border-radius:30px;margin-bottom:26px;
+  box-shadow:0 20px 55px rgba(232,116,156,.30);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+h1{font-size:clamp(2.5rem,6.5vw,3.6rem);font-weight:700;
+  letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.tagline{font-size:1.18rem;margin-bottom:8px;color:#5a5470;
+  font-family:var(--serif)}
+.tagline-sub{color:var(--muted);font-size:.95rem;margin-bottom:28px}
+.hero{width:100%;border-radius:26px;margin:8px 0 30px;
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 24px 70px rgba(120,90,130,.18)}
+.badge{display:inline-block;transition:transform .35s}
+.badge:hover{transform:scale(1.05)}
+.badge img{height:62px;border-radius:12px}
+.trust{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.pill{
+  font-size:.93rem;font-weight:600;
+  background:rgba(255,255,255,.7);
+  border:1px solid rgba(160,120,140,.18);
+  border-radius:999px;padding:10px 20px;color:#5a5470;
+}
+.pill.pink{
+  background:linear-gradient(135deg,rgba(232,116,156,.16),rgba(232,116,156,.06));
+  border-color:rgba(232,116,156,.45);color:var(--pink);
+}
+h2{font-size:1.55rem;font-weight:700;letter-spacing:-.02em;margin-bottom:22px;
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;display:inline-block}
+/* ═══ 三个温暖瞬间 ═══ */
+.moment{display:flex;gap:22px;align-items:center;margin-bottom:8px}
+.moment + .moment{margin-top:26px;padding-top:26px;
+  border-top:1px dashed rgba(160,120,140,.25)}
+.moment img{width:180px;border-radius:18px;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 14px 40px rgba(120,90,130,.16)}
+.moment p{color:#5a5470;font-size:.98rem}
+.moment .m-title{font-family:var(--serif);font-size:1.15rem;font-weight:600;
+  color:var(--fg);display:block;margin-bottom:6px}
+.moment:nth-child(even){flex-direction:row-reverse}
+@media (max-width:560px){
+  .moment{flex-direction:column!important;text-align:center}
+  .moment img{width:100%;max-width:260px}
+}
+ul{list-style:none}
+li{padding:9px 0;color:#5a5470}
+li::before{content:"💛 ";margin-right:6px}
+/* ═══ 语言列表 ═══ */
+.langs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.lang-chip{
+  font-size:.9rem;font-weight:600;color:#5a5470;
+  background:rgba(255,255,255,.75);border:1px solid rgba(160,120,140,.18);
+  border-radius:999px;padding:8px 18px;
+}
+/* ═══ 底部：八个二维码 ═══ */
+.qr-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  justify-items:center;margin-top:10px;
+}
+@media (max-width:640px){.qr-grid{grid-template-columns:repeat(2,1fr)}}
+.qr-card{
+  width:100%;max-width:160px;text-align:center;padding:16px 8px;border-radius:20px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.8);
+  transition:transform .35s;
+}
+.qr-card:hover{transform:translateY(-5px)}
+.qr-card img{width:120px;height:120px;border-radius:10px;background:#fff}
+.qr-card .lang{font-size:.88rem;font-weight:700;margin-top:10px}
+.qr-card .store{font-size:.72rem;color:var(--muted)}
+.footnote{font-size:.82rem;color:var(--muted);margin-top:22px;text-align:center}
+footer{padding:44px 0;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--pink);margin:0 12px;text-decoration:none;transition:color .3s}
+footer a:hover{color:var(--blue)}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="wrap glass reveal">
+  <img class="icon" src="img_icon.png" alt="YIYE icon">
+  <h1>YIYE</h1>
+  <div class="trust">
+    <span class="pill pink">🛡️ Photos never leave your iPhone</span>
+    <span class="pill">📵 No upload</span>
+    <span class="pill">🚫 No ads</span>
+    <span class="pill">📶 Works offline</span>
+  </div>
+  <p class="tagline">Every good moment deserves a page.</p>
+  <p class="tagline-sub">A day with friends. A baby's first year. Grandma's smile.<br>Turn them into warm memory pages — in seconds, right on your phone.</p>
+  <img class="hero" src="img_hero.jpg" alt="A warm YIYE memory page made from family photos">
+  <a class="badge" href="https://apps.apple.com/us/app/yiye/id6838268889">
+    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store">
+  </a>
+</header>
+
+<!-- ═══════════ 三个温暖瞬间 ═══════════ -->
+<section class="wrap glass reveal">
+  <h2>Made for the moments that matter</h2>
+
+  <!-- ① 朋友 -->
+  <div class="moment">
+    <!-- 配图后取消注释：<img src="img_friends.jpg" alt="A Polaroid page from a day out with friends"> -->
+    <div>
+      <span class="m-title">🌻 A day out with friends</span>
+      <p>That café you finally tried. The walk home at sunset. The silly group photo everyone laughed at.
+      Pick the best few, choose the Polaroid style, and send the page to the group chat tonight —
+      while the day is still warm.</p>
+    </div>
+  </div>
+
+  <!-- ② 妈妈和宝宝 -->
+  <div class="moment">
+    <!-- <img src="img_baby.jpg" alt="A magazine page of a baby's first year"> -->
+    <div>
+      <span class="m-title">🍼 A baby's first year</span>
+      <p>The first smile. The first solid food. The nap that finally worked.
+      One page a month, and by the first birthday you'll have a real keepsake —
+      something to print for the grandparents, and to show your little one years later.</p>
+    </div>
+  </div>
+
+  <!-- ③ 老人与后辈 -->
+  <div class="moment">
+    <!-- <img src="img_family.jpg" alt="A heritage album page of grandparents and grandchildren"> -->
+    <div>
+      <span class="m-title">🏡 Grandparents and grandchildren</span>
+      <p>Grandma's garden. Grandpa teaching chess. The four of them squeezed onto one sofa.
+      These photos are family history — the Heritage album style turns them into pages
+      that look like they came from a family bible, ready to be kept for decades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 一句话 ═══════════ -->
+<div class="wrap glass reveal" style="padding:52px 36px;text-align:center">
+  <p style="font-family:var(--serif);font-style:italic;color:#5a5470;font-size:1.08rem;line-height:2">
+  "You don't need to be a designer.<br>
+  You just need to care about the people in your photos."</p>
+</div>
+
+<!-- ═══════════ 功能清单 ═══════════ -->
+<section class="wrap glass reveal">
+  <h2>Simple by design</h2>
+  <ul>
+    <li>Pick a few photos, choose a style — the page is done in seconds</li>
+    <li>7 styles: Classic Grid & Polaroid free · Magazine, Filmstrip, Gallery, Neon & Heritage in PRO</li>
+    <li>Export in high resolution — share, save, or print</li>
+    <li>YIYE PRO: $9.99 once. No subscription. Family Sharing included</li>
+    <li>No account, no ads, no tracking — works fully offline</li>
+  </ul>
+</section>
+
+<!-- ═══════════ 8 门语言 ═══════════ -->
+<section class="wrap glass reveal">
+  <h2>Speaks your language</h2>
+  <p style="color:#5a5470;margin-bottom:18px;text-align:center">YIYE is fully translated into 8 languages:</p>
+  <div class="langs">
+    <span class="lang-chip">🇺🇸 English</span>
+    <span class="lang-chip">🇩🇪 Deutsch</span>
+    <span class="lang-chip">🇪🇸 Español</span>
+    <span class="lang-chip">🇫🇷 Français</span>
+    <span class="lang-chip">🇯🇵 日本語</span>
+    <span class="lang-chip">🇰🇷 한국어</span>
+    <span class="lang-chip">🇨🇳 中文</span>
+    <span class="lang-chip">🇧🇷 Português</span>
+  </div>
+</section>
+
+<!-- ═══════════ 底部：8 个二维码 ═══════════ -->
+<section class="wrap glass reveal">
+  <h2>Scan & download</h2>
+  <div class="qr-grid">
+    <div class="qr-card">
+      <a href="https://apps.apple.com/us/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fyiye%2Fid6838268889" alt="QR — US App Store"></a>
+      <div class="lang">🇺🇸 English</div><div class="store">US</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/de/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fde%2Fapp%2Fyiye%2Fid6838268889" alt="QR — German App Store"></a>
+      <div class="lang">🇩🇪 Deutsch</div><div class="store">DE</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/es/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fes%2Fapp%2Fyiye%2Fid6838268889" alt="QR — Spanish App Store"></a>
+      <div class="lang">🇪🇸 Español</div><div class="store">ES</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/fr/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Ffr%2Fapp%2Fyiye%2Fid6838268889" alt="QR — French App Store"></a>
+      <div class="lang">🇫🇷 Français</div><div class="store">FR</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/jp/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fjp%2Fapp%2Fyiye%2Fid6838268889" alt="QR — Japanese App Store"></a>
+      <div class="lang">🇯🇵 日本語</div><div class="store">JP</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/kr/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fkr%2Fapp%2Fyiye%2Fid6838268889" alt="QR — Korean App Store"></a>
+      <div class="lang">🇰🇷 한국어</div><div class="store">KR</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/cn/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fcn%2Fapp%2Fyiye%2Fid6838268889" alt="QR — China App Store"></a>
+      <div class="lang">🇨🇳 中文</div><div class="store">CN</div>
+    </div>
+    <div class="qr-card">
+      <a href="https://apps.apple.com/br/app/yiye/id6838268889">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=6&data=https%3A%2F%2Fapps.apple.com%2Fbr%2Fapp%2Fyiye%2Fid6838268889" alt="QR — Brazilian App Store"></a>
+      <div class="lang">🇧🇷 Português</div><div class="store">BR</div>
+    </div>
+  </div>
+  <p class="footnote">Same app, 8 countries — each link opens your local App Store in your language.</p>
+</section>
+
+<footer>
+  <p>
+    <a href="privacy-policy.html">Privacy Policy</a> ·
+    <a href="mailto:malantou-tech@qq.com?subject=YIYE%20Feedback">Contact</a><br>
+    © 2026 Xiaoliang Zhou. YIYE.
+  </p>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
